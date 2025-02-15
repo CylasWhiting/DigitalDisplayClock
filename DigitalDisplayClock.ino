@@ -35,7 +35,7 @@ void setup() {
   bool batteryUseAllowed = true;
   byte outputFrequency = 0;
 
-  sevseg.begin(COMMON_ANODE, 4, digitPins, segmentPins, 0);
+  sevseg.begin(COMMON_ANODE, 4, digitPins, segmentPins, 0,1);
   sevseg.setBrightness(1);
 
   // sets clock to pulse at 1 hz
@@ -64,9 +64,10 @@ void loop() {
     rtc.setHour((*serialInput - rtc.getMinute()) / 100);
     rtc.setMinute(*serialInput - ((*serialInput / 100) * 100));
     rtc.setSecond(0);
-    updateClock();
-    free(serialInput);  //frees memory
+    free(serialInput);
+    updateClock();  //frees memory
   }
+  
 }
 
 void updateClock() {  //Function called by 1 hz clock interrupt
