@@ -25,18 +25,19 @@ bool _12Hour;  //True configures the clock to 12 hour representation
 
 
 void setup() {
-  Wire.begin();
+  
 
   const byte digitPins[] = { 2, 3, 4, 6 };
   const byte segmentPins[] = { 5, 1, 7, 9, 10, 0, 13, 14 };
-
+Wire.begin();
+ sevseg.begin(COMMON_ANODE, 4, digitPins, segmentPins, 0,1);
+  sevseg.setBrightness(1);
   _12Hour = true;
   bool outputSQW = true;
   bool batteryUseAllowed = true;
   byte outputFrequency = 0;
 
-  sevseg.begin(COMMON_ANODE, 4, digitPins, segmentPins, 0,1);
-  sevseg.setBrightness(1);
+ 
 
   // sets clock to pulse at 1 hz
   rtc.enableOscillator(outputSQW, batteryUseAllowed, outputFrequency);
