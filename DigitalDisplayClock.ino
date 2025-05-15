@@ -51,6 +51,7 @@ void setup() {
   Serial.println(MAX_MEMORY - freeMemory());*/
   digitalWrite(10, HIGH);
   digitalWrite(16, LOW);
+  digitalWrite(17, LOW);
   digitalWrite(18, LOW);
   digitalWrite(19, LOW);
   digitalWrite(20, LOW);
@@ -60,7 +61,7 @@ void setup() {
 void loop() {
   SPI.beginTransaction(SPISettings(14000000, MSBFIRST, SPI_MODE1));
   digitalWrite(10, LOW);
-  SPI.transfer(0b01111111);
+  SPI.transfer(0b00111111);
   digitalWrite(16, HIGH);
   digitalWrite(16, LOW);
   //digitalWrite(17, HIGH);
