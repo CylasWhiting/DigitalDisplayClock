@@ -1,14 +1,12 @@
 /*
 Written by Cylas Whiting
-February 10th, 2025
+May 20th, 2025
 
-Arduino MKR WiFi 1010 Stats
-Total size: 26420 bytes
-Total memory usage: 4973 bytes
 
-Arduino Uno Stats
-Total size: 7260 bytes
-Total memory usage: 545 bytes
+Atmega 328p 
+Stats:
+Total size: 1244 bytes
+Global Variable Memory usage: 28; ? may be inaccurate
 */
 
 #include <time.h>
@@ -53,6 +51,7 @@ void setup() {
   DDRD |= 15;         //00001111 (PD0, PD1, PD2, PD3 enabled for output)
   PORTC |= (15 << 2); //00111100 (All digits high (diplay off), LED low)
   PORTD &= (1 << 1);  //00000010 (OE LOW (Shift reg output on))
+  
   /*****************CODE SECTION NOT FULLY UNDERSTOOD*********Written by Jai Krishna******************************************************/
   cli(); //Disable Global Interrupts
   TCCR2A = 0; //Normal Mode
@@ -112,12 +111,3 @@ void flashDisplay(byte segValue, byte activeDigit) {
     }
     PORTC = mask;
 }
-/*void updateClock() {  //Function called by 1 hz clock interrupt
-  if (PM_time) {      //Turns LED on if its PM
-    digitalWrite(8, HIGH);
-  } else {
-    digitalWrite(8, LOW);
-  }
-  //Blanks the display, then sets new number , before turning the display
-}
-*/
